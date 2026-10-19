@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.env
+.env.local
+server/uploads/
+*.log
+.DS_Store
+mobile/ios/App/build/
+mobile/ios/DerivedData/
+dist-mobile/

@@ -1,0 +1,9 @@
+{
+  "appId": "uz.ecorun.app",
+  "appName": "EcoRun",
+  "webDir": "dist-mobile",
+  "ios": {
+    "contentInset": "never",
+    "backgroundColor": "#000000"
+  }
+}
