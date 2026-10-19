@@ -114,21 +114,21 @@ export default async function botRoutes(app: FastifyInstance) {
       fail(409, 'phone_in_use');
     }
 
-    if (!user) {
-      // A previous Telegram-only login may have created an empty shell. Reuse
-      // it when safe; otherwise create the phone-backed account directly.
-      if (byTg && !byTg.onboarded && !byTg.phone) {
-        await q('update users set phone = $2, telegram_username = $3 where id = $1', [byTg.id, phone, tg.username ?? null]);
-        user = await one<any>('select id, name, role, language, onboarded from users where id = $1', [byTg.id]);
-      } else {
-        const name = [tg.first_name, tg.last_name].filter(Boolean).join(' ').slice(0, 60) || null;
-        user = await one<any>(
-          `insert into users (phone, telegram_id, telegram_username, name, language)
-           values ($1, $2, $3, $4, $5)
-           returning id, name, role, language, onboarded`,
-          [phone, tg.id, tg.username ?? null, name, langOf(tg.language_code)],
-        );
-      }
+    if (!user && byTg) {
+      // Telegram-only accounts already have a verified Telegram identity. Add
+      // the verified shared phone to that same account, even after onboarding.
+      // Creating a second row would violate the unique telegram_id constraint.
+      if (byTg.phone && normalizePhone(byTg.phone) !== phone) fail(409, 'phone_in_use');
+      await q('update users set phone = $2, telegram_username = $3 where id = $1', [byTg.id, phone, tg.username ?? null]);
+      user = await one<any>('select id, name, role, language, onboarded from users where id = $1', [byTg.id]);
+    } else if (!user) {
+      const name = [tg.first_name, tg.last_name].filter(Boolean).join(' ').slice(0, 60) || null;
+      user = await one<any>(
+        `insert into users (phone, telegram_id, telegram_username, name, language)
+         values ($1, $2, $3, $4, $5)
+         returning id, name, role, language, onboarded`,
+        [phone, tg.id, tg.username ?? null, name, langOf(tg.language_code)],
+      );
     } else {
       await q(
         `update users set telegram_id = $2, telegram_username = $3
@@ -143,7 +143,7 @@ export default async function botRoutes(app: FastifyInstance) {
        where token = $1 and purpose = 'login' and status = 'pending'`,
       [token, user!.id, tg.id],
     );
-    return { ok: true, isNew: !byPhone, language: user!.language };
+    return { ok: true, isNew: !byPhone && !byTg, language: user!.language };
   });
 
   app.post('/internal/bot/link', { schema: { body: body({ token: S.str({ maxLength: 64 }) }, ['token']) } }, async (req) => {

