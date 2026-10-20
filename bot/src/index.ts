@@ -126,7 +126,9 @@ bot.callbackQuery(/^login:(.+)$/, async (ctx) => {
     const lang = await langOf(ctx);
     pendingLogin.set(ctx.from.id, token);
     await ctx.answerCallbackQuery();
-    await ctx.editMessageText(t(lang, 'login_phone_ask'));
+    // Remove the inline confirmation prompt before showing the one-time
+    // contact keyboard, otherwise Telegram displays the instruction twice.
+    await ctx.deleteMessage().catch(() => {});
     await ctx.reply(t(lang, 'login_phone_ask'), {
       reply_markup: new Keyboard().requestContact(t(lang, 'btn_phone')).resized().oneTime(),
     });
